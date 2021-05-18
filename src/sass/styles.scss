@@ -1,5 +1,51 @@
-$light: #F2F2F2;
+@import 'variables.scss';
+@import 'flexbox.scss';
 
 body {
+  margin: auto;
+  padding: 0 30px;
+  max-width: 100%;
+  height: 100%;
   background-color: $light;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+nav {
+  & h1 a {
+    text-decoration: none;
+    color: $primary;
+  }
+  & ul {
+    padding: 0;
+    & li a {
+      text-decoration: none;
+      font-weight: 600;
+      color: $dark;
+      &:hover {
+        border-bottom: 2px solid $primary;
+        color: $primary;
+      }
+    }
+  }
+}
+
+
+ul {
+  
+  list-style-type: none;
+  & li a {
+    padding-right: 20px;
+    text-decoration: none;
+    color: $primary;
+    font-weight: 600;
+    
+  }
+}
+
+.btn {
+  padding: 10px;
+  background-color: $primary;
+  font-family: 'Courier New', Courier, monospace;
+  border: none;
+  cursor: pointer;
 }
