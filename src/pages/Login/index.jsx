@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Cookies from 'js-cookie';
+import { Link } from 'react-router-dom';
 
 
 const Login = ({ isConnect, changeConnect }) => {
@@ -24,16 +25,16 @@ const Login = ({ isConnect, changeConnect }) => {
   };
 
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleClick = () => {
     fetchLogin()
+    changeConnect()
   };
 
   
   return (
     <div className="Login">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+      <h2>Se connecter</h2>
+      <form>
         <div>
           <label>Identifiant (email ou username)</label>
           <input type="text" onChange={e => setUserName(e.target.value)} />
@@ -42,7 +43,7 @@ const Login = ({ isConnect, changeConnect }) => {
           <label>Mot de passe</label>
           <input type="password" onChange={e => setPassword(e.target.value)} />
         </div>
-        <button className="btn" type="submit" onClick={changeConnect}>Connection</button>
+        <Link to="/" className="btn" onClick={handleClick}>S'inscrire</Link>
       </form>
     </div>
   );
