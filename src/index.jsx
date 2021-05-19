@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ReactDom from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Cookies from 'js-cookie';
@@ -15,6 +15,12 @@ import Navbar from 'components//Navbar';
 const App = () => {
   const [isConnect, setIsConnect] = useState(false)
 
+
+  useEffect(() => {
+    Cookies.get('token') ? setIsConnect(true) : setIsConnect(false) ;
+  }, []);
+
+
   const loginOut = () => {
     Cookies.remove('token');
     setIsConnect(false)
@@ -23,9 +29,6 @@ const App = () => {
   const loginIn = () => {
     setIsConnect(true)
   };
-
-
-  console.log(Cookies.get('token'))
 
 
   return (
@@ -38,7 +41,7 @@ const App = () => {
           <Route path="/login" exact>
             <Login isConnect={isConnect} changeConnect={loginIn} />
           </Route>
-          <Route path="/profile" exact component={Profile} />
+          <Route path="/profile" exact component={Profile}   isConnect={isConnect} />
         </Switch>
       </div>
     </Router>
