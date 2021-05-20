@@ -73,7 +73,7 @@ const Profile = ({ isConnect }) => {
           <input type="text" onChange={e => setDescription(e.target.value)} />
         </div>
         <br></br>
-        <Link to="/" className="btn" onClick={handleClick}>S'inscrire</Link>
+        <Link to="/" className="btn" onClick={handleClick}>Modifier</Link>
       </form>
     </div>
   );

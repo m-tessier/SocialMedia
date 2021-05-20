@@ -13,13 +13,12 @@ import Navbar from 'components//Navbar';
 
 
 const App = () => {
-  const [isConnect, setIsConnect] = useState(false)
-
+  const [isConnect, setIsConnect] = useState(false);
+  const token = Cookies.get('token') ? Cookies.get('token') : undefined;
 
   useEffect(() => {
-    Cookies.get('token') ? setIsConnect(true) : setIsConnect(false) ;
-  }, []);
-
+    token !== undefined ? setIsConnect(true) : setIsConnect(false);
+  }, [token]);
 
   const loginOut = () => {
     Cookies.remove('token');
@@ -36,7 +35,9 @@ const App = () => {
       <div className="App">
         <Navbar isConnect={isConnect} changeConnect={loginOut} />
         <Switch>
-          <Route path="/" exact component={Home} />
+          <Route path="/" exact>
+            <Home isConnect={isConnect} />
+          </Route>
           <Route path="/register" exact component={Register} />
           <Route path="/login" exact>
             <Login isConnect={isConnect} changeConnect={loginIn} />
